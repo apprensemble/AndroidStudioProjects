@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello_world">bonjour le monde</string>
+    <string name="celcius">30</string>
+    <string name="farenheit">48</string>
+    <string name="kelvin">0</string>
+</resources>
