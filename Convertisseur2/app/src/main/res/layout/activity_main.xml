@@ -46,7 +46,7 @@
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:imeOptions="actionNone"
-                android:imeActionLabel="Reset"
+                android:imeActionLabel="@string/reset"
                 android:hint="@string/infoKelvin"
                 android:id="@+id/eKelvin"
                 android:layout_column="0" />
@@ -70,7 +70,7 @@
                 android:inputType="numberSigned|numberDecimal"
                 android:ems="10"
                 android:imeOptions="actionNone"
-                android:imeActionLabel="Reset"
+                android:imeActionLabel="@string/reset"
                 android:hint="@string/infoFarenheit"
                 android:id="@+id/eFarenheit"
                 android:layout_column="0" />
@@ -94,7 +94,7 @@
                 android:inputType="numberSigned|numberDecimal"
                 android:ems="10"
                 android:imeOptions="actionSend"
-                android:imeActionLabel="Reset"
+                android:imeActionLabel="@string/reset"
                 android:hint="@string/infoCelcius"
                 android:id="@+id/eCelcius"
                 android:layout_column="0" />
@@ -106,6 +106,24 @@
                 android:text="°C"
                 android:id="@+id/celcius"
                 android:layout_column="1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/message"
+                android:layout_column="0"
+                android:textColor="#ff0000"
+                android:singleLine="false"
+                android:layout_span="2" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>

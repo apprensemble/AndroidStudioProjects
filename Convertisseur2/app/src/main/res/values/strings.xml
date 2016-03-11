@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Convertisseur temps reel</string>
+    <string name="app_name">Convertisseur temps réel</string>
     <string name="instruction">Remplir un champ</string>
     <string name="infoCelcius">valeur en degré Celcius</string>
     <string name="infoFarenheit">valeur en degré Farenheit</string>
     <string name="infoKelvin">valeur en Kelvin</string>
+    <string name="reset">RAZ</string>
+    <string name="infZeroAbs">Erreur : Température inférieur au zéro absolu! </string>
 </resources>

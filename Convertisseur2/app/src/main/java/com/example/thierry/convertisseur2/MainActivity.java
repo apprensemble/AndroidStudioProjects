@@ -1,9 +1,13 @@
 package com.example.thierry.convertisseur2;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText celcius, farenheit, kelvin;
     private Double vFarenheit, vCelcius, vKelvin;
+    private TextView message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,18 @@ public class MainActivity extends AppCompatActivity {
         celcius = (EditText) findViewById(R.id.eCelcius);
         farenheit = (EditText) findViewById(R.id.eFarenheit);
         kelvin = (EditText) findViewById(R.id.eKelvin);
+        message = (TextView) findViewById(R.id.message);
+
+        TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                resetEcran();
+                return true;
+            }
+        };
+        celcius.setOnEditorActionListener(actionRAZ);
+        farenheit.setOnEditorActionListener(actionRAZ);
+        kelvin.setOnEditorActionListener(actionRAZ);
 
         kelvin.addTextChangedListener(new TextWatcher() {
             @Override
@@ -43,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 if (kelvin.hasFocus()) {
                     convertirDepuisKelvin(s);
                 }
+                if (vKelvin <0) kelvinValide(false);
+                else kelvinValide(true);
 
             }
         });
@@ -83,15 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-/*
-        kelvin.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                afficheK(((EditText) findViewById(R.id.eKelvin)).getText());
-            }
-        });
-        */
     }
 
     private Boolean entreeValide(CharSequence s) {
@@ -99,6 +109,21 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    private void kelvinValide(Boolean etat) {
+        if(etat) {
+            kelvin.setTextColor(Color.BLACK);
+            celcius.setTextColor(Color.BLACK);
+            farenheit.setTextColor(Color.BLACK);
+            message.setText("");
+        }
+        else {
+            kelvin.setTextColor(Color.RED);
+            celcius.setTextColor(Color.RED);
+            farenheit.setTextColor(Color.RED);
+            message.setText(R.string.infZeroAbs);
+        }
     }
 
 
@@ -109,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             vFarenheit = Double.valueOf(s.toString());
             vKelvin = f2k(vFarenheit);
             vCelcius = k2c(vKelvin);
-            affiche(kelvin,vKelvin);
+            affiche(kelvin, vKelvin);
             affiche(celcius,vCelcius);
         }
     }
@@ -122,6 +147,13 @@ public class MainActivity extends AppCompatActivity {
             affiche(farenheit,vFarenheit);
             affiche(kelvin,vKelvin);
         }
+
+    }
+
+    private void resetEcran() {
+        kelvin.setText("");
+        farenheit.setText("");
+        celcius.setText("");
     }
 
     public void convertirDepuisKelvin(CharSequence s) {
