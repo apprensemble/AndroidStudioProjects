@@ -15,13 +15,16 @@ import static java.lang.Integer.getInteger;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText celcius, farenheit, kelvin;
+    private Double vFarenheit, vCelcius, vKelvin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EditText celcius = (EditText) findViewById(R.id.eCelcius);
-        EditText farenheit = (EditText) findViewById(R.id.eFarenheit);
-        EditText kelvin = (EditText) findViewById(R.id.eKelvin);
+        celcius = (EditText) findViewById(R.id.eCelcius);
+        farenheit = (EditText) findViewById(R.id.eFarenheit);
+        kelvin = (EditText) findViewById(R.id.eKelvin);
 
         kelvin.addTextChangedListener(new TextWatcher() {
             @Override
@@ -37,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (hasWindowFocus()) {
-                    afficheK(s);
+                if (kelvin.hasFocus()) {
+                    convertirDepuisKelvin(s);
                 }
 
             }
@@ -51,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (hasWindowFocus()) {
-                    afficheC(s);
+                if (celcius.hasFocus()) {
+                    convertirDepuisCelcius(s);
                 }
 
             }
@@ -70,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (hasWindowFocus()) {
-                    afficheF(s);
+                if (farenheit.hasFocus()) {
+                    convertirDepuisFarenheit(s);
                 }
             }
 
@@ -91,75 +94,48 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 
-    public void convertirDepuisCelcius(CharSequence s) {
-        EditText celcius = (EditText) findViewById(R.id.eCelcius);
-        EditText kelvin = (EditText) findViewById(R.id.eKelvin);
-        EditText farenheit = (EditText) findViewById(R.id.eFarenheit);
-        Double vFarenheit, vCelcius, vKelvin;
+    private Boolean entreeValide(CharSequence s) {
         if (s.toString().matches("[-]?[0-9][0-9.]*")) {
-            if (farenheit.hasFocus()) {
-                vFarenheit = Double.valueOf(s.toString());
-            }
-            else
-            else if (kelvin.hasFocus()) {
-
-            }
+            return true;
         }
-
-    }
-
-    private void afficheF(CharSequence s) {
-        EditText farenheit = (EditText) findViewById(R.id.eFarenheit);
-        if (farenheit.hasFocus() && s.toString().matches("[-]?[0-9][0-9.]*")) {
-            Double vFarenheit = Double.valueOf(s.toString());
-
-            EditText celcius = (EditText) findViewById(R.id.eCelcius);
-            EditText kelvin = (EditText) findViewById(R.id.eKelvin);
-            Double vKelvin = f2k(vFarenheit);
-            Double vCelcius = k2c(vKelvin);
-            celcius.setText(vCelcius.toString());
-            kelvin.setText(vKelvin.toString());
-        }
+        return false;
     }
 
 
-    private void afficheK(CharSequence s) {
-        EditText kelvin = (EditText) findViewById(R.id.eKelvin);
 
-        if (kelvin.hasFocus() && s.toString().matches("[0-9][0-9.]*")) {
 
-            Double vKelvin = Double.valueOf(s.toString());
-
-            EditText celcius = (EditText) findViewById(R.id.eCelcius);
-            EditText farenheit = (EditText) findViewById(R.id.eFarenheit);
-            Log.i("k2c C : ", vKelvin.toString());
-            Double vCelcius = k2c(vKelvin);
-            Double vFarenheit = c2f(vCelcius);
-            celcius.setText(vCelcius.toString());
-            farenheit.setText(vFarenheit.toString());
+    public void convertirDepuisFarenheit(CharSequence s) {
+        if (entreeValide(s)) {
+            vFarenheit = Double.valueOf(s.toString());
+            vKelvin = f2k(vFarenheit);
+            vCelcius = k2c(vKelvin);
+            affiche(kelvin,vKelvin);
+            affiche(celcius,vCelcius);
         }
     }
 
-    public void afficheC(CharSequence s) {
-        EditText celcius = (EditText) findViewById(R.id.eCelcius);
-        if (celcius.hasFocus() && s.toString().matches("[-]?[0-9][0-9.]*")) {
-            Double vCelcius = Double.valueOf(s.toString());
-
-            EditText kelvin = (EditText) findViewById(R.id.eKelvin);
-            EditText farenheit = (EditText) findViewById(R.id.eFarenheit);
-            Double vFarenheit = c2f(vCelcius);
-            farenheit.setText(vFarenheit.toString());
-            Double vKelvin = f2k(vFarenheit);
-            kelvin.setText(vKelvin.toString());
+    public void convertirDepuisCelcius(CharSequence s) {
+        if (entreeValide(s)) {
+            vCelcius = Double.valueOf(s.toString());
+            vFarenheit = c2f(vCelcius);
+            vKelvin = f2k(vFarenheit);
+            affiche(farenheit,vFarenheit);
+            affiche(kelvin,vKelvin);
         }
-        celcius.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+    }
 
-                return false;
-            }
-        });
+    public void convertirDepuisKelvin(CharSequence s) {
+        if (entreeValide(s)) {
+            vKelvin = Double.valueOf(s.toString());
+            vCelcius = k2c(vKelvin);
+            vFarenheit = c2f(vCelcius);
+            affiche(celcius,vCelcius);
+            affiche(farenheit,vFarenheit);
+        }
+    }
 
+    public void affiche(EditText editText, Double v) {
+        editText.setText(v.toString());
     }
 
     private Double c2f(Double s) {
