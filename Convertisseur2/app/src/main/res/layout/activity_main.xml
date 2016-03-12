@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned|numberDecimal"
                 android:ems="10"
-                android:imeOptions="actionSend"
+                android:imeOptions="actionNone"
                 android:imeActionLabel="@string/reset"
                 android:hint="@string/infoCelcius"
                 android:id="@+id/eCelcius"

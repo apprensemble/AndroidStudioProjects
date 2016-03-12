@@ -3,6 +3,7 @@ package com.example.thierry.convertisseur2;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -32,11 +34,14 @@ public class MainActivity extends AppCompatActivity {
         kelvin = (EditText) findViewById(R.id.eKelvin);
         message = (TextView) findViewById(R.id.message);
 
-        TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
+        final TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                resetEcran();
-                return true;
+                if (EditorInfo.IME_NULL == actionId) {
+                    resetEcran();
+                    return true;
+                }
+                return false;
             }
         };
         celcius.setOnEditorActionListener(actionRAZ);
@@ -51,17 +56,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
+                if (kelvin.hasFocus()) {
+                    convertirDepuisKelvin(s);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (kelvin.hasFocus()) {
-                    convertirDepuisKelvin(s);
+                try {
+                    kelvinValide(vKelvin >= 0 ? true : false);
                 }
-                if (vKelvin <0) kelvinValide(false);
-                else kelvinValide(true);
+                catch (NullPointerException e) {
+
+                }
 
             }
         });
@@ -154,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
         kelvin.setText("");
         farenheit.setText("");
         celcius.setText("");
+        vKelvin = 0.0;
+        kelvinValide(true);
     }
 
     public void convertirDepuisKelvin(CharSequence s) {
