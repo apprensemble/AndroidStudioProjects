@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    kelvinValide(vKelvin >= 0 ? true : false);
+                    kelvinValide(Double.valueOf(vKelvin) >= 0);
                 }
                 catch (NullPointerException e) {
 
