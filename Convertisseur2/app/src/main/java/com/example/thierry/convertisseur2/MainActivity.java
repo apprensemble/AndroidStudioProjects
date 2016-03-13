@@ -17,6 +17,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 import static java.lang.Integer.getInteger;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText celcius, farenheit, kelvin;
     private Double vFarenheit, vCelcius, vKelvin;
     private TextView message;
+    private DecimalFormat deuxDigit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         farenheit = (EditText) findViewById(R.id.eFarenheit);
         kelvin = (EditText) findViewById(R.id.eKelvin);
         message = (TextView) findViewById(R.id.message);
+        deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.getDefault()));
 
         final TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
             @Override
@@ -176,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void affiche(EditText editText, Double v) {
-        editText.setText(v.toString());
+        editText.setText(deuxDigit.format(v));
     }
 
     private Double c2f(Double s) {
