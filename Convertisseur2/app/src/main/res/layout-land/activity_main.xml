@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/space" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/eKelvin"
+        android:layout_below="@+id/space"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/eFarenheit"
+        android:layout_below="@+id/eKelvin"
+        android:layout_alignRight="@+id/eKelvin"
+        android:layout_alignEnd="@+id/eKelvin" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/eCelcius"
+        android:layout_below="@+id/eFarenheit"
+        android:layout_alignRight="@+id/eFarenheit"
+        android:layout_alignEnd="@+id/eFarenheit" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=" K"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/space"
+        android:layout_toRightOf="@+id/eKelvin"
+        android:layout_toEndOf="@+id/eKelvin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="°F"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/eKelvin"
+        android:layout_toRightOf="@+id/eFarenheit"
+        android:layout_toEndOf="@+id/eFarenheit" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="°C"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/eFarenheit"
+        android:layout_toRightOf="@+id/eCelcius"
+        android:layout_toEndOf="@+id/eCelcius" />
+
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboardview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

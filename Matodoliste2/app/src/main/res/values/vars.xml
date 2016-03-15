@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="priorité_haute">0</integer>
+    <integer name="priorité_normal">1</integer>
+    <integer name="priorité_faible">2</integer>
+</resources>

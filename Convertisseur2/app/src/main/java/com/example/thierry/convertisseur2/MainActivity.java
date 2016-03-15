@@ -1,7 +1,10 @@
 package com.example.thierry.convertisseur2;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.inputmethodservice.Keyboard;
+import android.inputmethodservice.KeyboardView;
 import android.net.Uri;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         kelvin = (EditText) findViewById(R.id.eKelvin);
         message = (TextView) findViewById(R.id.message);
         deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.getDefault()));
+
+        KeyboardView kbd = (KeyboardView) findViewById(R.id.keyboardview);
+        kbd.setKeyboard(new Keyboard(this, R.layout.keyboard));
 
         final TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
             @Override
