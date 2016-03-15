@@ -15,8 +15,11 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -41,10 +44,77 @@ public class MainActivity extends AppCompatActivity {
         farenheit = (EditText) findViewById(R.id.eFarenheit);
         kelvin = (EditText) findViewById(R.id.eKelvin);
         message = (TextView) findViewById(R.id.message);
-        deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.getDefault()));
+        deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+
+        OnTouchListener neFaisRien = new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                EditText et = (EditText) v;
+                et.setSelection(et.getOffsetForPosition(event.getX(), event.getY()));
+                v.requestFocus();
+                //((EditText) v).getOffsetForPosition(event.getX(), event.getY());
+                //Log.i("focus","event "+((EditText) v).getOffsetForPosition(event.getX(), event.getY()));
+                return true;
+            }
+        };
+
+        kelvin.setOnTouchListener(neFaisRien);
+        farenheit.setOnTouchListener(neFaisRien);
+        celcius.setOnTouchListener(neFaisRien);
+
 
         KeyboardView kbd = (KeyboardView) findViewById(R.id.keyboardview);
         kbd.setKeyboard(new Keyboard(this, R.xml.keyboard));
+        kbd.setOnKeyboardActionListener(new KeyboardView.OnKeyboardActionListener() {
+            @Override
+            public void onPress(int primaryCode) {
+                KeyEvent event = new KeyEvent(KeyEvent.ACTION_MULTIPLE,primaryCode);
+                dispatchKeyEvent(event);
+
+            }
+
+            @Override
+            public void onRelease(int primaryCode) {
+
+            }
+
+            @Override
+            public void onKey(int primaryCode, int[] keyCodes) {
+                /*
+                long eventTime = System.currentTimeMillis();
+                KeyEvent event = new KeyEvent(eventTime, eventTime,
+                        KeyEvent.ACTION_DOWN, primaryCode, 0, 0, 0, 0,
+                        KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE);
+                dispatchKeyEvent(event);
+                */
+
+            }
+
+            @Override
+            public void onText(CharSequence text) {
+
+            }
+
+            @Override
+            public void swipeLeft() {
+
+            }
+
+            @Override
+            public void swipeRight() {
+
+            }
+
+            @Override
+            public void swipeDown() {
+
+            }
+
+            @Override
+            public void swipeUp() {
+
+            }
+        });
 
         final TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
             @Override

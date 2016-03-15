@@ -3,18 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/instruction"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <Space
         android:layout_width="20px"
         android:layout_height="20px"
-        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:id="@+id/space" />
 
@@ -24,15 +15,17 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/eKelvin"
+        android:hint="@string/infoKelvin"
         android:layout_below="@+id/space"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         android:ems="10"
         android:id="@+id/eFarenheit"
+        android:hint="@string/infoFarenheit"
         android:layout_below="@+id/eKelvin"
         android:layout_alignRight="@+id/eKelvin"
         android:layout_alignEnd="@+id/eKelvin" />
@@ -40,9 +33,10 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         android:ems="10"
         android:id="@+id/eCelcius"
+        android:hint="@string/infoCelcius"
         android:layout_below="@+id/eFarenheit"
         android:layout_alignRight="@+id/eFarenheit"
         android:layout_alignEnd="@+id/eFarenheit" />
@@ -77,6 +71,17 @@
         android:layout_toRightOf="@+id/eCelcius"
         android:layout_toEndOf="@+id/eCelcius" />
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/eKelvin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <android.inputmethodservice.KeyboardView
         android:id="@+id/keyboardview"
         android:layout_width="fill_parent"
@@ -86,6 +91,21 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:visibility="visible"
+        android:background="@android:color/transparent"
+        android:foreground="@android:color/transparent"
+        android:keyBackground="@android:color/transparent"
+        android:shadowColor="@android:color/transparent"
+        android:keyPreviewLayout="@null"
+        android:keyTextColor="#000000"
+        style="?attr/borderlessButtonStyle"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/message"
+        android:textColor="#FF0000"
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/eFarenheit"
+        android:layout_toStartOf="@+id/eFarenheit" />
 </RelativeLayout>
