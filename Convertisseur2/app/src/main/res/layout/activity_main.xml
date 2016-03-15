@@ -126,4 +126,14 @@
                 android:layout_span="2" />
         </TableRow>
     </TableLayout>
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboardview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="visible"
+        />
 </RelativeLayout>

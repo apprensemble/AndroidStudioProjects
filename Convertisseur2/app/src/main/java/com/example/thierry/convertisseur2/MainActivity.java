@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.getDefault()));
 
         KeyboardView kbd = (KeyboardView) findViewById(R.id.keyboardview);
-        kbd.setKeyboard(new Keyboard(this, R.layout.keyboard));
+        kbd.setKeyboard(new Keyboard(this, R.xml.keyboard));
 
         final TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
             @Override
