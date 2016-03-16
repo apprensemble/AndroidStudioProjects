@@ -30,6 +30,9 @@ import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 import java.util.Locale;
 
+import static com.example.thierry.convertisseur2.Convertisseur.c2f;
+import static com.example.thierry.convertisseur2.Convertisseur.f2k;
+import static com.example.thierry.convertisseur2.Convertisseur.k2c;
 import static java.lang.Integer.getInteger;
 import static java.util.Arrays.asList;
 
@@ -73,58 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         KeyboardView kbd = (KeyboardView) findViewById(R.id.keyboardview);
         kbd.setKeyboard(new Keyboard(this, R.xml.keyboard));
-        kbd.setOnKeyboardActionListener(new KeyboardView.OnKeyboardActionListener() {
-            @Override
-            public void onPress(int primaryCode) {
-                KeyEvent event = new KeyEvent(KeyEvent.ACTION_MULTIPLE,primaryCode);
+        kbd.setOnKeyboardActionListener(new MonClavier(this));
 
-                vibreur.vibrate(25);
-                dispatchKeyEvent(event);
-
-            }
-
-            @Override
-            public void onRelease(int primaryCode) {
-
-            }
-
-            @Override
-            public void onKey(int primaryCode, int[] keyCodes) {
-                /*
-                long eventTime = System.currentTimeMillis();
-                KeyEvent event = new KeyEvent(eventTime, eventTime,
-                        KeyEvent.ACTION_DOWN, primaryCode, 0, 0, 0, 0,
-                        KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE);
-                dispatchKeyEvent(event);
-                */
-
-            }
-
-            @Override
-            public void onText(CharSequence text) {
-
-            }
-
-            @Override
-            public void swipeLeft() {
-
-            }
-
-            @Override
-            public void swipeRight() {
-
-            }
-
-            @Override
-            public void swipeDown() {
-
-            }
-
-            @Override
-            public void swipeUp() {
-
-            }
-        });
 
         final TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
             @Override
@@ -136,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         };
+
         celcius.setOnEditorActionListener(actionRAZ);
         farenheit.setOnEditorActionListener(actionRAZ);
         kelvin.setOnEditorActionListener(actionRAZ);
@@ -268,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
     public void affiche(EditText editText, Double v) {
         editText.setText(deuxDigit.format(v));
     }
-
+/*
     private Double c2f(Double s) {
         s = (s * 9/5 + 32);
         return s;
@@ -283,4 +237,5 @@ public class MainActivity extends AppCompatActivity {
         s = (s - 273.15);
         return s;
     }
+    */
 }
