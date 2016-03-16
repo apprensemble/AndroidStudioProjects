@@ -5,8 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="30dp" android:layout_width="10dp">
 
     <Row>
-        <Key android:codes="8"  android:keyOutputText="1"  android:keyLabel="1" android:horizontalGap="1%p"/>
-        <Key android:codes="9"    android:keyLabel="2" android:horizontalGap="1%p"/>
+        <Key android:codes="8"     android:keyLabel="1" android:horizontalGap="1%p"/>
+        <Key android:codes="9"     android:keyLabel="2" android:horizontalGap="1%p"/>
         <Key android:codes="10"    android:keyLabel="3" android:horizontalGap="1%p" />
         <Key android:codes="11"    android:keyLabel="4" android:horizontalGap="1%p" />
         <Key android:codes="12"    android:keyLabel="5" android:horizontalGap="1%p" />
@@ -16,13 +16,13 @@
         <Key android:codes="14"    android:keyLabel="7" android:horizontalGap="1%p"/>
         <Key android:codes="15"    android:keyLabel="8" android:horizontalGap="1%p" />
         <Key android:codes="16"    android:keyLabel="9" android:horizontalGap="1%p" />
-        <Key android:codes="7"    android:keyLabel="0" android:horizontalGap="1%p" />
+        <Key android:codes="7"     android:keyLabel="0" android:horizontalGap="1%p" />
     </Row>
 
     <Row>
-        <Key android:codes="66"    android:keyLabel="RAZ" android:keyWidth="31%p" android:horizontalGap="1%p"/>
+        <Key android:codes="66"    android:keyLabel="@string/reset" android:keyWidth="31%p" android:horizontalGap="1%p"/>
         <Key android:codes="69"    android:keyLabel="-" android:horizontalGap="1%p" />
         <Key android:codes="56"    android:keyLabel="." android:horizontalGap="1%p" />
-        <Key android:codes="67"    android:keyLabel="del" android:horizontalGap="1%p" />
+        <Key android:codes="67"    android:keyLabel="@string/del" android:horizontalGap="1%p" />
     </Row>
 </Keyboard>

@@ -5,5 +5,6 @@
     <string name="infoFarenheit">valeur en degré Farenheit</string>
     <string name="infoKelvin">valeur en Kelvin</string>
     <string name="reset">RAZ</string>
-    <string name="infZeroAbs">Erreur : Température inférieur au zéro absolu! </string>
+    <string name="del">Del</string>
+    <string name="infZeroAbs">Erreur : Température inférieure au zéro absolu! </string>
 </resources>

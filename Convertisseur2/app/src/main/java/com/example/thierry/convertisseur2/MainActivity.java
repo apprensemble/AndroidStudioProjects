@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.net.Uri;
+import android.os.Vibrator;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,11 +24,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Arrays;
 import java.util.Locale;
 
 import static java.lang.Integer.getInteger;
+import static java.util.Arrays.asList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private Double vFarenheit, vCelcius, vKelvin;
     private TextView message;
     private DecimalFormat deuxDigit;
+    private Vibrator vibreur;
+    final private long [] vibAlerte = {0,50,100,100};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         kelvin = (EditText) findViewById(R.id.eKelvin);
         message = (TextView) findViewById(R.id.message);
         deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+        vibreur = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
 
         OnTouchListener neFaisRien = new OnTouchListener() {
             @Override
@@ -69,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPress(int primaryCode) {
                 KeyEvent event = new KeyEvent(KeyEvent.ACTION_MULTIPLE,primaryCode);
+
+                vibreur.vibrate(25);
                 dispatchKeyEvent(event);
 
             }
@@ -194,10 +204,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean entreeValide(CharSequence s) {
-        if (s.toString().matches("[-]?[0-9][0-9.]*")) {
-            return true;
-        }
-        return false;
+        return s.toString().matches("[-]?[0-9][0-9.]*");
     }
 
     private void kelvinValide(Boolean etat) {
@@ -212,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
             celcius.setTextColor(Color.RED);
             farenheit.setTextColor(Color.RED);
             message.setText(R.string.infZeroAbs);
+            vibreur.vibrate(vibAlerte,-1);
         }
     }
 
