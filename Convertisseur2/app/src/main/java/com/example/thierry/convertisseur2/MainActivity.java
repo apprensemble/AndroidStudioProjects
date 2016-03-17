@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private Vibrator vibreur;
     final private long [] vibAlerte = {0,50,100,100};
 
+    private ControllerConv monController;
+    private VueConv maVue;
+    private ModelConv monModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,14 +61,20 @@ public class MainActivity extends AppCompatActivity {
         vibreur = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 
+        monModel = new ModelConv();
+        maVue = new VueConv(this);
+        monController = new ControllerConv(maVue,monModel);
+        maVue.setMonController(monController);
+
+
+
+
         OnTouchListener neFaisRien = new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 EditText et = (EditText) v;
                 et.setSelection(et.getOffsetForPosition(event.getX(), event.getY()));
                 v.requestFocus();
-                //((EditText) v).getOffsetForPosition(event.getX(), event.getY());
-                //Log.i("focus","event "+((EditText) v).getOffsetForPosition(event.getX(), event.getY()));
                 return true;
             }
         };
