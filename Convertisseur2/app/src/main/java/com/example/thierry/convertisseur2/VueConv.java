@@ -31,29 +31,23 @@ public class VueConv {
         farenheit = (EditText) monActivite.findViewById(R.id.eFarenheit);
         kelvin = (EditText) monActivite.findViewById(R.id.eKelvin);
         message = (TextView) monActivite.findViewById(R.id.message);
+        deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+        MesListeners convTR = new MesListeners(celcius);
+        MesListeners convTR2 = new MesListeners(kelvin);
+        MesListeners convTR3 = new MesListeners(farenheit);
+        convTR.setMaVue(this);
+        convTR2.setMaVue(this);
+        convTR3.setMaVue(this);
+        celcius.addTextChangedListener(convTR);
+        kelvin.addTextChangedListener(convTR2);
+        farenheit.addTextChangedListener(convTR3);
     }
 
     public void setMonController(ControllerConv monController) {
         this.monController = monController;
     }
 
-    private View.OnTouchListener neFaisRien;
 
-    private void activeTouchListener() {
-        neFaisRien = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                EditText et = (EditText) v;
-                et.setSelection(et.getOffsetForPosition(event.getX(), event.getY()));
-                v.requestFocus();
-                return true;
-            }
-        };
-
-        kelvin.setOnTouchListener(neFaisRien);
-        farenheit.setOnTouchListener(neFaisRien);
-        celcius.setOnTouchListener(neFaisRien);
-    }
 
     private void activeRaz() {
         final TextView.OnEditorActionListener actionRAZ = new TextView.OnEditorActionListener() {
@@ -104,7 +98,14 @@ public class VueConv {
 
     public void convertirDepuisKelvin(CharSequence s) {
         monController.convertirDepuisKelvin(s);
+    }
 
+    public void convertirDepuisCelcius(CharSequence s) {
+        monController.convertirDepuisCelcius(s);
+    }
+
+    public void convertirDepuisFarenheit(CharSequence s) {
+        monController.convertirDepuisFarenheit(s);
     }
 
     public void afficheCelcius(Double vCelcius) {
@@ -118,4 +119,5 @@ public class VueConv {
     public void afficheKelvin(Double vKelvin) {
         affiche(kelvin, vKelvin);
     }
+
 }

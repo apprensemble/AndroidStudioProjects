@@ -27,31 +27,25 @@ public class ControllerConv {
         monModel.resetEcran();
     }
 
-    private Boolean entreeValide(CharSequence s) {
+/*    private Boolean entreeValide(CharSequence s) {
         return s.toString().matches("[-]?[0-9][0-9.]*");
-    }
+    }*/
 
     public void convertirDepuisKelvin(CharSequence s) {
-        if (entreeValide(s)) {
             Map<String,Double> res = monModel.convertirDepuisKelvin(Double.valueOf(s.toString()));
             maVue.afficheCelcius(res.get("celcius"));
             maVue.afficheFarenheit(res.get("farenheit"));
-        }
     }
 
     public void convertirDepuisCelcius(CharSequence s) {
-        if (entreeValide(s)) {
             Map<String,Double> res = monModel.convertirDepuisCelcius(Double.valueOf(s.toString()));
             maVue.afficheKelvin(res.get("kelvin"));
             maVue.afficheFarenheit(res.get("farenheit"));
-        }
     }
     public void convertirDepuisFarenheit(CharSequence s) {
-        if (entreeValide(s)) {
             Map<String, Double> res = monModel.convertirDepuisFarenheit(Double.valueOf(s.toString()));
             maVue.afficheCelcius(res.get("celcius"));
             maVue.afficheKelvin(res.get("kelvin"));
-        }
     }
 
 }
