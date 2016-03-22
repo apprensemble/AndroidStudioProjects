@@ -23,6 +23,6 @@
         <Key android:codes="66"    android:keyLabel="@string/reset" android:keyWidth="31%p" android:horizontalGap="1%p"/>
         <Key android:codes="69"    android:keyLabel="-" android:horizontalGap="1%p" />
         <Key android:codes="56"    android:keyLabel="." android:horizontalGap="1%p" />
-        <Key android:codes="67"    android:keyLabel="@string/del" android:horizontalGap="1%p" />
+        <Key android:codes="67"    android:keyLabel="Del"  android:horizontalGap="1%p" />
     </Row>
 </Keyboard>
