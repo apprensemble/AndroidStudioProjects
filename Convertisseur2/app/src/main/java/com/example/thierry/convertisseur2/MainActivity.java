@@ -48,20 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private ControllerConv monController;
     private VueConv maVue;
     private ModelConv monModel;
-    private View.OnTouchListener neFaisRien;
-
-    private void activeTouchListener() {
-        neFaisRien = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                EditText et = (EditText) v;
-                et.setSelection(et.getOffsetForPosition(event.getX(), event.getY()));
-                v.requestFocus();
-                return true;
-            }
-        };
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
         kbd.setKeyboard(new Keyboard(this, R.xml.keyboard));
         kbd.setOnKeyboardActionListener(new MonClavier(this));
 
-        kelvin.setOnTouchListener(neFaisRien);
-        farenheit.setOnTouchListener(neFaisRien);
-        celcius.setOnTouchListener(neFaisRien);
+
     }
 
 
