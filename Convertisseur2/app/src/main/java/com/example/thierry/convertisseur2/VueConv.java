@@ -2,6 +2,7 @@ package com.example.thierry.convertisseur2;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -26,6 +27,9 @@ public class VueConv {
     private TextView message;
     //devrait etre dans le model
     private DecimalFormat deuxDigit;
+    private Vibrator vibreur;
+    final private long [] vibAlerte = {0,50,100,100};
+
 
     public VueConv(Activity monActivite) {
         this.monActivite = monActivite;
@@ -34,14 +38,8 @@ public class VueConv {
         kelvin = (EditText) monActivite.findViewById(R.id.eKelvin);
         message = (TextView) monActivite.findViewById(R.id.message);
         deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
-        /*
-        MesListeners convTR = new MesListeners(celcius);
-        MesListeners convTR2 = new MesListeners(kelvin);
-        MesListeners convTR3 = new MesListeners(farenheit);
-        convTR.setMaVue(this);
-        convTR2.setMaVue(this);
-        convTR3.setMaVue(this);
-        */
+        vibreur = (Vibrator) monActivite.getSystemService(monActivite.VIBRATOR_SERVICE);
+
         celcius.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -166,7 +164,7 @@ public class VueConv {
             celcius.setTextColor(Color.RED);
             farenheit.setTextColor(Color.RED);
             message.setText(R.string.infZeroAbs);
-            //vibreur.vibrate(vibAlerte,-1);
+            vibreur.vibrate(vibAlerte,-1);
         }
     }
 

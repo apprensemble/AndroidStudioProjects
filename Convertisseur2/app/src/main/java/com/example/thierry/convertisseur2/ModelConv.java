@@ -19,7 +19,7 @@ public class ModelConv {
         vKelvin = new Double(f2k(vFarenheit));
     }
 
-    public void resetEcran() {
+    public void RAZ() {
         vKelvin = 0.0;
     }
 

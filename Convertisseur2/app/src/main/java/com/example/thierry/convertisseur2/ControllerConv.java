@@ -1,11 +1,5 @@
 package com.example.thierry.convertisseur2;
 
-import android.app.Activity;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -15,21 +9,15 @@ public class ControllerConv {
 
     private final VueConv maVue;
     private final ModelConv monModel;
-    private final DecimalFormat deuxDigit;
 
     public ControllerConv(VueConv maVue, ModelConv monModel) {
         this.maVue = maVue;
         this.monModel = monModel;
-        deuxDigit = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
     }
 
     public void resetEcran() {
-        monModel.resetEcran();
+        monModel.RAZ();
     }
-
-/*    private Boolean entreeValide(CharSequence s) {
-        return s.toString().matches("[-]?[0-9][0-9.]*");
-    }*/
 
     public void convertirDepuisKelvin(CharSequence s) {
             Map<String,Double> res = monModel.convertirDepuisKelvin(Double.valueOf(s.toString()));
