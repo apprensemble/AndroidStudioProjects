@@ -3,6 +3,9 @@ package com.example.thierry.convertisseur2;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.net.Uri;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private VueConv maVue;
     private ModelConv monModel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         KeyboardView kbd = (KeyboardView) findViewById(R.id.keyboardview);
         kbd.setKeyboard(new Keyboard(this, R.xml.keyboard));
         kbd.setOnKeyboardActionListener(new MonClavier(this));
+
 
 
     }
