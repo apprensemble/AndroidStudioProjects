@@ -16,12 +16,14 @@ public class TodoList {
         this.deadline = deadline;
         this.action = action;
         this.priorité = priorité;
+        status = true;
     }
 
     public TodoList(Date deadline, String action) {
         this.deadline = deadline;
         this.action = action;
         this.priorité = R.integer.priorité_normal;
+        status = false;
     }
 
     public Date getDeadline() {
