@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
         TodoList action1 = new TodoList(new GregorianCalendar().getTime(),"faire un coucou",R.integer.priorité_faible);
         TodoList action2 = new TodoList(new GregorianCalendar().getTime(),"ne rien faire");
         pListe = new ArrayList<>();
-        pListe.add(action1);
-        pListe.add(action2);
+        for (int i = 0;i<10;i++) {
+            pListe.add(action1);
+            pListe.add(action2);
+        }
         nawakAdapter = new TodoAdapter<>(this,R.layout.tache_dans_liste,pListe);
         listeDeNawak.setAdapter(nawakAdapter);
         listeDeNawak.setTextFilterEnabled(true);
