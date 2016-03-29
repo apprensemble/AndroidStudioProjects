@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -33,8 +35,8 @@ public class TodoAdapter<T> extends ArrayAdapter<TodoList> {
         TodoList p = getItem(position);
 
         if (p != null) {
-            EditText action = (EditText) v.findViewById(R.id.action);
-            EditText deadline = (EditText) v.findViewById(R.id.deadline);
+            TextView action = (TextView) v.findViewById(R.id.action);
+            TextView deadline = (TextView) v.findViewById(R.id.deadline);
             TextView priorité = (TextView) v.findViewById(R.id.priorité);
             CheckBox status = (CheckBox) v.findViewById(R.id.status);
 

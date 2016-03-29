@@ -4,4 +4,7 @@
     <string name="date">14/03/2016</string>
     <string name="status">status</string>
     <string name="priorité">priorité</string>
+    <string name="basse">basse</string>
+    <string name="normal">normal</string>
+    <string name="haute">haute</string>
 </resources>
