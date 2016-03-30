@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TodoList</string>
+    <string name="priorité">priorité</string>
+    <string name="priorité_haute">priorité_haute</string>
+    <string name="priorité_normal">priorité normal</string>
+    <string name="priorité_faible">priorité faible</string>
+    <string name="fait">fait</string>
+    <string name="a_faire">à faire</string>
+    <string name="status">status</string>
+    <string name="action">action</string>
+    <string name="deadline">deadline</string>
+    <string name="valider">Valider</string>
+    <string name="annuler">Annuler</string>
+</resources>

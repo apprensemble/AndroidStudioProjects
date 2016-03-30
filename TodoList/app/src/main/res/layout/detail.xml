@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/action"
+        android:id="@+id/action"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/deadline"
+        android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/priorité"
+        android:background="@color/normal"
+        android:id="@+id/groupe_priorité"
+        android:layout_below="@+id/action"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/priorité_faible"
+            android:text="@string/priorité_faible"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/priorité_normal"
+            android:text="@string/priorité_normal"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/priorité_haute"
+            android:text="@string/priorité_haute"/>
+    </RadioGroup>
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/a_faire"
+        android:id="@+id/status"
+        android:checked="false"
+        android:layout_alignTop="@+id/groupe_priorité"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/deadline"
+        android:id="@+id/deadline"
+        android:inputType="date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valider"
+        android:id="@+id/valide"
+        android:layout_marginTop="78dp"
+        android:layout_below="@+id/status"
+        android:layout_toLeftOf="@+id/action"
+        android:layout_toStartOf="@+id/action" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/annuler"
+        android:id="@+id/annule"
+        android:layout_alignBottom="@+id/valide"
+        android:layout_alignLeft="@+id/action"
+        android:layout_alignStart="@+id/action" />
+</RelativeLayout>
