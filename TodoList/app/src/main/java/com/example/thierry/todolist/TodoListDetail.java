@@ -1,21 +1,26 @@
 package com.example.thierry.todolist;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class TodoListDetail extends AppCompatActivity  implements DialogInterface.OnClickListener, View.OnClickListener {
+public class TodoListDetail extends AppCompatActivity  implements DialogInterface.OnClickListener, View.OnClickListener, DatePickerDialog.OnDateSetListener {
     private CheckBox statusView;
     private RadioGroup prioritéView;
     private EditText actionView;
@@ -65,6 +70,7 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         statusView.setChecked(b.getBoolean("status",false));
         position = b.getInt("position");
         ok.setOnClickListener(this);
+        deadlineView.setOnClickListener(this);
     }
 
     @Override
@@ -73,6 +79,23 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.valide :
+                validation();
+                break;
+            case R.id.deadline :
+                showDatePickerDialog(deadlineView);
+                break;
+        }
+    }
+
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    private void validation() {
         Intent i = new Intent();
         i.putExtra("action", actionView.getText().toString());
         switch (prioritéView.getCheckedRadioButtonId()) {
@@ -91,5 +114,13 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         i.putExtra("deadline", deadlineView.getText().toString());
         setResult(TodoListMain.RESULT_OK, i);
         finish();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(year,monthOfYear, dayOfMonth);
+        String date = ConvertisseurDate.strSlashFromDate(cal.getTime());
+        deadlineView.setText(date);
     }
 }
