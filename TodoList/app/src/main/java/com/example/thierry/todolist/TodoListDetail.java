@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class TodoListDetail extends AppCompatActivity  implements DialogInterface.OnClickListener, View.OnClickListener {
@@ -36,8 +37,8 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         Button ok = (Button) findViewById(R.id.valide);
         Button annule = (Button) findViewById(R.id.annule);
         Date d = new Date();
-        d.setTime(b.getLong("deadline",-1));
-        deadlineView.setText(d.toString());
+        d.setTime(b.getLong("deadline", d.getTime()));
+        deadlineView.setText(ConvertisseurDate.strSlashFromDate(d));
         //savedInstanceState.get("action");
         actionView.setText(b.getString("action","entrez une action"));
         //deadlineView.setText("coucou");
@@ -87,7 +88,7 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         }
         i.putExtra("position",position);
         i.putExtra("status",statusView.isChecked());
-        i.putExtra("deadline",deadlineView.getText());
+        i.putExtra("deadline", deadlineView.getText().toString());
         setResult(TodoListMain.RESULT_OK, i);
         finish();
     }

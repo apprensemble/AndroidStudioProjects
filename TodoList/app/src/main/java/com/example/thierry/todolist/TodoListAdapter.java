@@ -42,7 +42,7 @@ public class TodoListAdapter<T> extends ArrayAdapter<TodoListObject> {
             }
 
             if (deadline != null) {
-                deadline.setText(p.getDeadline().toString());
+                deadline.setText(p.getDeadlineText());
             }
 
             if (priorité != null) {

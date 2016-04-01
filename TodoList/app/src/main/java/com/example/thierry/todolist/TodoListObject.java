@@ -2,6 +2,7 @@ package com.example.thierry.todolist;
 
 import android.graphics.Color;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -20,6 +21,13 @@ public class TodoListObject {
         status = true;
     }
 
+    public TodoListObject(String deadline, String action, Integer priorité) {
+        this.deadline = ConvertisseurDate.dateFromSlashStr(new SimpleDateFormat("dd/MM/yyyy"),deadline);
+        this.action = action;
+        this.priorité = priorité;
+        status = true;
+    }
+
     public TodoListObject(Date deadline, String action) {
         this.deadline = deadline;
         this.action = action;
@@ -29,6 +37,10 @@ public class TodoListObject {
 
     public Date getDeadline() {
         return deadline;
+    }
+
+    public String getDeadlineText() {
+        return ConvertisseurDate.strSlashFromDate(deadline);
     }
 
     public void setDeadline(Date deadline) {

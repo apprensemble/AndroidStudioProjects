@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -59,8 +60,8 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
             if (resultCode == RESULT_OK) {
                 int position = data.getIntExtra("position",-1);
                 Date d = new Date();
-                d.setTime(data.getLongExtra("deadline",-1));
-                TodoListObject tlo2 = new TodoListObject(new Date(data.getLongExtra("deadline",-1)),data.getStringExtra("action"),data.getIntExtra("priorité",R.integer.priorité_normal));
+                d = ConvertisseurDate.dateFromSlashStr(new SimpleDateFormat("dd/MM/yyyy"),data.getStringExtra("deadline"));
+                TodoListObject tlo2 = new TodoListObject(d,data.getStringExtra("action"),data.getIntExtra("priorité",R.integer.priorité_normal));
                 tlo2.setStatus(data.getBooleanExtra("status", false));
                 if (position != -1) {
                     TodoListObject tlo = todoListeAdapater.getItem(position);
