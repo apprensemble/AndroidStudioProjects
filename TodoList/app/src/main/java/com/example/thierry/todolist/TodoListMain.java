@@ -58,8 +58,10 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
         if (requestCode == Intent.FILL_IN_DATA) {
             if (resultCode == RESULT_OK) {
                 int position = data.getIntExtra("position",-1);
+                Date d = new Date();
+                d.setTime(data.getLongExtra("deadline",-1));
                 TodoListObject tlo2 = new TodoListObject(new Date(data.getLongExtra("deadline",-1)),data.getStringExtra("action"),data.getIntExtra("priorité",R.integer.priorité_normal));
-                tlo2.setStatus(data.getBooleanExtra("status",false));
+                tlo2.setStatus(data.getBooleanExtra("status", false));
                 if (position != -1) {
                     TodoListObject tlo = todoListeAdapater.getItem(position);
                     tlo.setAction(String.valueOf(data.getStringExtra("action")));
