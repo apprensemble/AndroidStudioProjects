@@ -54,6 +54,15 @@
         android:layout_alignLeft="@+id/action"
         android:layout_alignStart="@+id/action" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calendrier"
+        android:id="@+id/calendrier"
+        android:layout_above="@+id/status"
+        android:layout_toRightOf="@+id/deadline"
+        android:layout_toEndOf="@+id/deadline" />
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,5 +89,7 @@
             android:text="@string/priorité_haute"
             android:layout_gravity="right" />
     </RadioGroup>
+
+
 
 </RelativeLayout>

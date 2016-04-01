@@ -11,4 +11,5 @@
     <string name="deadline">deadline</string>
     <string name="valider">Valider</string>
     <string name="annuler">Annuler</string>
+    <string name="calendrier">Calendrier</string>
 </resources>

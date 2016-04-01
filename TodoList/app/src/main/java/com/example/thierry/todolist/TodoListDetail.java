@@ -26,12 +26,13 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
     private EditText actionView;
     private EditText deadlineView;
     private Integer position;
+    private Button ok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = getIntent().getExtras();
-        setContentView(R.layout.detail);
+        setContentView(R.layout.detail2);
         prioritéView = (RadioGroup) findViewById(R.id.groupe_priorité);
         RadioButton prioritéf = (RadioButton) findViewById(R.id.priorité_faible);
         RadioButton prioritén = (RadioButton) findViewById(R.id.priorité_normal);
@@ -39,7 +40,8 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         statusView = (CheckBox) findViewById(R.id.status);
         actionView = (EditText) findViewById(R.id.action);
         deadlineView = (EditText) findViewById(R.id.deadline );
-        Button ok = (Button) findViewById(R.id.valide);
+        Button calendrierView = (Button) findViewById(R.id.calendrier);
+        ok = (Button) findViewById(R.id.valide);
         Button annule = (Button) findViewById(R.id.annule);
         Date d = new Date();
         d.setTime(b.getLong("deadline", d.getTime()));
@@ -49,28 +51,55 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         //deadlineView.setText("coucou");
         switch (b.getInt("priorité",R.integer.priorité_normal)) {
             case R.integer.priorité_faible :
-                actionView.setBackgroundResource(R.color.faible);
-                prioritéView.setBackgroundResource(R.color.faible);
-                ok.setBackgroundResource(R.color.faible);
-                prioritéView.check(R.id.priorité_faible);
+                faible();
                 break;
             case R.integer.priorité_haute :
-                actionView.setBackgroundResource(R.color.haute);
-                prioritéView.setBackgroundResource(R.color.haute);
-                ok.setBackgroundResource(R.color.haute);
-                prioritéView.check(R.id.priorité_haute);
+                haute();
                 break;
             case R.integer.priorité_normal :
-                actionView.setBackgroundResource(R.color.normal);
-                prioritéView.setBackgroundResource(R.color.normal);
-                ok.setBackgroundResource(R.color.normal);
-                prioritéView.check(R.id.priorité_normal);
+                normal();
                 break;
         }
         statusView.setChecked(b.getBoolean("status",false));
         position = b.getInt("position");
         ok.setOnClickListener(this);
         deadlineView.setOnClickListener(this);
+        calendrierView.setOnClickListener(this);
+        prioritéf.setOnClickListener(this);
+        prioritén.setOnClickListener(this);
+        prioritéh.setOnClickListener(this);
+        statusView.setOnClickListener(this);
+        verifStatus();
+    }
+
+    private void faible() {
+        actionView.setBackgroundResource(R.color.faible);
+        prioritéView.setBackgroundResource(R.color.faible);
+        ok.setBackgroundResource(R.color.faible);
+        prioritéView.check(R.id.priorité_faible);
+    }
+
+    private void normal() {
+        actionView.setBackgroundResource(R.color.normal);
+        prioritéView.setBackgroundResource(R.color.normal);
+        ok.setBackgroundResource(R.color.normal);
+        prioritéView.check(R.id.priorité_normal);
+    }
+
+    private void haute() {
+        actionView.setBackgroundResource(R.color.haute);
+        prioritéView.setBackgroundResource(R.color.haute);
+        ok.setBackgroundResource(R.color.haute);
+        prioritéView.check(R.id.priorité_haute);
+    }
+
+    private void verifStatus() {
+        if (statusView.isChecked()) {
+            statusView.setText(R.string.fait);
+        }
+        else {
+            statusView.setText(R.string.a_faire);
+        }
     }
 
     @Override
@@ -83,8 +112,20 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
             case R.id.valide :
                 validation();
                 break;
-            case R.id.deadline :
+            case R.id.calendrier :
                 showDatePickerDialog(deadlineView);
+                break;
+            case R.id.priorité_faible :
+                faible();
+                break;
+            case R.id.priorité_haute :
+                haute();
+                break;
+            case R.id.priorité_normal :
+                normal();
+                break;
+            case R.id.status :
+                verifStatus();
                 break;
         }
     }

@@ -73,6 +73,7 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this,TodoListDetail.class);

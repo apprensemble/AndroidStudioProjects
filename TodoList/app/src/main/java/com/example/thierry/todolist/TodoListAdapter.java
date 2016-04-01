@@ -1,6 +1,8 @@
 package com.example.thierry.todolist;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,13 +31,13 @@ public class TodoListAdapter<T> extends ArrayAdapter<TodoListObject> {
             v = vi.inflate(R.layout.element_dans_liste, null);
         }
 
-        TodoListObject p = getItem(position);
+        final TodoListObject p = getItem(position);
 
         if (p != null) {
             TextView action = (TextView) v.findViewById(R.id.action);
             TextView deadline = (TextView) v.findViewById(R.id.deadline);
             TextView priorité = (TextView) v.findViewById(R.id.priorité);
-            CheckBox status = (CheckBox) v.findViewById(R.id.status);
+            final CheckBox status = (CheckBox) v.findViewById(R.id.status);
 
             if (action != null) {
                 action.setText(p.getAction());
@@ -62,10 +64,31 @@ public class TodoListAdapter<T> extends ArrayAdapter<TodoListObject> {
 
             if (status != null) {
                 status.setChecked(p.getStatus());
+                status.setText(verifStatus(status.isChecked()));
+                status.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.i("status",String.valueOf(status.isChecked()));
+                        p.setStatus(status.isChecked());
+                        verifStatus(status.isChecked());
+                        notifyDataSetChanged();
+                    }
+                });
             }
 
         }
 
         return v;
     }
+
+    private int verifStatus(Boolean checked) {
+        if (checked) {
+            return R.string.fait;
+        }
+        else {
+            return R.string.a_faire;
+        }
+
+    }
+
 }
