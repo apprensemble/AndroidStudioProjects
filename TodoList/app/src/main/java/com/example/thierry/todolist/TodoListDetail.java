@@ -1,11 +1,13 @@
 package com.example.thierry.todolist;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +34,10 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = getIntent().getExtras();
-        setContentView(R.layout.detail2);
+        setContentView(R.layout.detail3);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Log.i("toolbar : ", String.valueOf(myToolbar.getTitle()));
+        setSupportActionBar(myToolbar);
         prioritéView = (RadioGroup) findViewById(R.id.groupe_priorité);
         RadioButton prioritéf = (RadioButton) findViewById(R.id.priorité_faible);
         RadioButton prioritén = (RadioButton) findViewById(R.id.priorité_normal);
@@ -69,6 +74,7 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         prioritén.setOnClickListener(this);
         prioritéh.setOnClickListener(this);
         statusView.setOnClickListener(this);
+        annule.setOnClickListener(this);
         verifStatus();
     }
 
@@ -127,6 +133,9 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
             case R.id.status :
                 verifStatus();
                 break;
+            case R.id.annule :
+                annulation();
+                break;
         }
     }
 
@@ -134,6 +143,11 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    private void annulation() {
+        setResult(TodoListMain.RESULT_CANCELED);
+        finish();
     }
 
     private void validation() {

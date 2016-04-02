@@ -3,6 +3,7 @@ package com.example.thierry.todolist;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_liste);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         todoListeView = (ListView) findViewById(R.id.todoliste);
         TodoListObject action1 = new TodoListObject(new GregorianCalendar().getTime(),"faire un coucou",R.integer.priorité_faible);
         TodoListObject action2 = new TodoListObject(new GregorianCalendar().getTime(),"ne rien faire");
@@ -42,7 +45,7 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TodoListObject tlo = todoListeAdapater.getItem(position);
-        Toast.makeText(view.getContext(),tlo.getAction(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(),tlo.getAction(),Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,TodoListDetail.class);
         intent.putExtra("priorité",tlo.getPriorité());
         intent.putExtra("action",tlo.getAction());
@@ -69,6 +72,10 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
                     todoListeAdapater.remove(tlo);
                 }
                 todoListeAdapater.add(tlo2);
+                Toast.makeText(getApplicationContext(),tlo2.getDeadlineText()+" "+tlo2.getAction(),Toast.LENGTH_SHORT).show();
+            }
+            else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(),R.string.annulation_ajout,Toast.LENGTH_SHORT).show();
             }
         }
     }

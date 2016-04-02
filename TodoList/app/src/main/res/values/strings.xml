@@ -12,4 +12,6 @@
     <string name="valider">Valider</string>
     <string name="annuler">Annuler</string>
     <string name="calendrier">Calendrier</string>
+    <string name="ajouter">+</string>
+    <string name="annulation_ajout">Ajout annulé</string>
 </resources>
