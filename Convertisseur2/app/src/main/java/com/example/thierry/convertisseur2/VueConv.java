@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,8 +51,13 @@ public class VueConv {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (celcius.hasFocus()&&entreeValide(s)) {
+                    s = monController.valideEntree(s);
                     convertirDepuisCelcius(s);
                 }
+                else if(start==0 && before==1){
+                    resetEcran();
+                }
+//                Log.i("start - before - count",s+" "+start+" "+before+" "+count);
             }
 
             @Override
@@ -68,14 +74,20 @@ public class VueConv {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (kelvin.hasFocus()&&entreeValide(s)) {
+                    s = monController.valideEntree(s);
                     convertirDepuisKelvin(s);
+                }
+                else if(start==0 && before==1){
+                    resetEcran();
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    if (entreeValide(kelvin.getText())) kelvinValide(Double.valueOf(s.toString()) >= 0);
+                    CharSequence seq = kelvin.getText();
+                    seq = monController.valideEntree(seq);
+                    if (entreeValide(seq)) kelvinValide(Double.valueOf(s.toString()) >= 0);
                 }
                 catch (NullPointerException e) {
 
@@ -91,7 +103,11 @@ public class VueConv {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (farenheit.hasFocus()&&entreeValide(s)) {
+                    s = monController.valideEntree(s);
                     convertirDepuisFarenheit(s);
+                }
+                else if(start==0 && before==1){
+                    resetEcran();
                 }
             }
 
@@ -185,7 +201,7 @@ public class VueConv {
     }
 
     private Boolean entreeValide(CharSequence s) {
-        return s.toString().matches("[-]?[0-9][0-9.]*");
+        return s.toString().matches("[-]?[.0-9][0-9]*");
     }
 
     public void convertirDepuisKelvin(CharSequence s) {
