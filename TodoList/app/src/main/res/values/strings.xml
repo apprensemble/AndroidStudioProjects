@@ -14,4 +14,5 @@
     <string name="calendrier">Calendrier</string>
     <string name="ajouter">+</string>
     <string name="annulation_ajout">Ajout annulé</string>
+    <string name="action_settings">Rien</string>
 </resources>

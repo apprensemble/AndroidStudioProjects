@@ -3,7 +3,11 @@ package com.example.thierry.todolist;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.SupportMenuInflater;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -24,7 +28,7 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_liste);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.todoliste_toolbar);
         setSupportActionBar(myToolbar);
         todoListeView = (ListView) findViewById(R.id.todoliste);
         TodoListObject action1 = new TodoListObject(new GregorianCalendar().getTime(),"faire un coucou",R.integer.priorité_faible);
@@ -37,9 +41,23 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
         todoListeAdapater = new TodoListAdapter<>(getApplicationContext(),R.layout.element_dans_liste,todoListeArray);
         todoListeView.setAdapter(todoListeAdapater);
         todoListeView.setOnItemClickListener(this);
-        Button ajout = (Button) findViewById(R.id.button);
-        ajout.setOnClickListener(this);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.ajout :
+                ajoutTache();
+                return true;
+            default :
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -83,6 +101,10 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onClick(View v) {
+        ajoutTache();
+    }
+
+    private void ajoutTache() {
         Intent intent = new Intent(this,TodoListDetail.class);
         intent.putExtra("position",-1);
         startActivityForResult(intent, Intent.FILL_IN_DATA);

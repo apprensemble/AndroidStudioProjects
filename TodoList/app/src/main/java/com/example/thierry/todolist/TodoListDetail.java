@@ -35,7 +35,7 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         super.onCreate(savedInstanceState);
         Bundle b = getIntent().getExtras();
         setContentView(R.layout.detail3);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.todoliste_toolbar);
         Log.i("toolbar : ", String.valueOf(myToolbar.getTitle()));
         setSupportActionBar(myToolbar);
         prioritéView = (RadioGroup) findViewById(R.id.groupe_priorité);
