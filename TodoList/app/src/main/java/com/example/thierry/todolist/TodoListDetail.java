@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -52,7 +54,8 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         d.setTime(b.getLong("deadline", d.getTime()));
         deadlineView.setText(ConvertisseurDate.strSlashFromDate(d));
         //savedInstanceState.get("action");
-        actionView.setText(b.getString("action","entrez une action"));
+        actionView.setText(b.getString("action",""));
+        actionView.setBackgroundResource(R.color.saisie);
         //deadlineView.setText("coucou");
         switch (b.getInt("priorité",R.integer.priorité_normal)) {
             case R.integer.priorité_faible :
@@ -76,24 +79,58 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         statusView.setOnClickListener(this);
         annule.setOnClickListener(this);
         verifStatus();
+        //annule.setId(R.id.supprime);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_detail,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.ajouter :
+                validation();
+                return true;
+            case R.id.annuler :
+                annulation();
+                return true;
+            case R.id.supprimer :
+                suppression();
+                return true;
+            default :
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void suppression() {
+        Intent i = new Intent();
+        i.putExtra("position",position);
+        Toast.makeText(getApplicationContext(),String.valueOf(position),Toast.LENGTH_SHORT).show();
+        //a defaut de pouvoir faire mon propre id...
+        setResult(TodoListMain.RESULT_FIRST_USER, i);
+        finish();
+
     }
 
     private void faible() {
-        actionView.setBackgroundResource(R.color.faible);
+        //actionView.setBackgroundResource(R.color.faible);
         prioritéView.setBackgroundResource(R.color.faible);
         ok.setBackgroundResource(R.color.faible);
         prioritéView.check(R.id.priorité_faible);
     }
 
     private void normal() {
-        actionView.setBackgroundResource(R.color.normal);
+        //actionView.setBackgroundResource(R.color.normal);
         prioritéView.setBackgroundResource(R.color.normal);
         ok.setBackgroundResource(R.color.normal);
         prioritéView.check(R.id.priorité_normal);
     }
 
     private void haute() {
-        actionView.setBackgroundResource(R.color.haute);
+        //actionView.setBackgroundResource(R.color.haute);
         prioritéView.setBackgroundResource(R.color.haute);
         ok.setBackgroundResource(R.color.haute);
         prioritéView.check(R.id.priorité_haute);

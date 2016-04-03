@@ -17,12 +17,18 @@ import java.util.ArrayList;
  */
 public class TodoListAdapter<T> extends ArrayAdapter<TodoListObject> {
 
+    Context context;
+    ArrayList<TodoListObject> tlo;
+
+
     public TodoListAdapter(Context context, int resource, ArrayList<TodoListObject> objects) {
         super(context, resource, objects);
+        this.context = context;
+        this.tlo = objects;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         View v = convertView;
 
         if (v == null) {
@@ -72,6 +78,7 @@ public class TodoListAdapter<T> extends ArrayAdapter<TodoListObject> {
                         p.setStatus(status.isChecked());
                         verifStatus(status.isChecked());
                         notifyDataSetChanged();
+                        TodoListLoader.ecrire(context,tlo);
                     }
                 });
             }

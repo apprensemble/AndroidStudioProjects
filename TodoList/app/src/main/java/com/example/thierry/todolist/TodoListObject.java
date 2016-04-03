@@ -28,6 +28,13 @@ public class TodoListObject {
         status = true;
     }
 
+    public TodoListObject(String deadline, String action, Integer priorité,Boolean fait) {
+        this.deadline = ConvertisseurDate.dateFromSlashStr(new SimpleDateFormat("dd/MM/yyyy"),deadline);
+        this.action = action;
+        this.priorité = priorité;
+        status = fait;
+    }
+
     public TodoListObject(Date deadline, String action) {
         this.deadline = deadline;
         this.action = action;
@@ -69,6 +76,10 @@ public class TodoListObject {
 
     public void setPriorité(Integer priorité) {
         this.priorité = priorité;
+    }
+
+    public String toString() {
+        return this.getDeadlineText()+";"+this.getAction()+";"+this.getStatus()+";"+this.getPriorité();
     }
 
 }

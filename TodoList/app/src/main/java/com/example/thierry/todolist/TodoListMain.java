@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.SupportMenuInflater;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -38,6 +39,7 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
         todoListeArray.add(action1);
         todoListeArray.add(action2);
         todoListeArray.add(action3);
+        todoListeArray = TodoListLoader.lire(getApplicationContext());
         todoListeAdapater = new TodoListAdapter<>(getApplicationContext(),R.layout.element_dans_liste,todoListeArray);
         todoListeView.setAdapter(todoListeAdapater);
         todoListeView.setOnItemClickListener(this);
@@ -91,9 +93,20 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
                 }
                 todoListeAdapater.add(tlo2);
                 Toast.makeText(getApplicationContext(),tlo2.getDeadlineText()+" "+tlo2.getAction(),Toast.LENGTH_SHORT).show();
+                TodoListLoader.ecrire(getApplicationContext(), todoListeArray);
             }
             else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(),R.string.annulation_ajout,Toast.LENGTH_SHORT).show();
+            }
+            else if(resultCode == RESULT_FIRST_USER) {
+                int position = data.getIntExtra("position",-1);
+                Log.i("position",String.valueOf(position));
+                if (position != -1) {
+                    TodoListObject tlo = todoListeAdapater.getItem(position);
+                    todoListeAdapater.remove(tlo);
+                    TodoListLoader.ecrire(getApplicationContext(), todoListeArray);
+                }
+
             }
         }
     }

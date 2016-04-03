@@ -7,7 +7,7 @@
     <string name="fait">fait</string>
     <string name="a_faire">à faire</string>
     <string name="status">status</string>
-    <string name="action">action</string>
+    <string name="action">entrez une action</string>
     <string name="deadline">deadline</string>
     <string name="valider">Valider</string>
     <string name="annuler">Annuler</string>
@@ -15,4 +15,6 @@
     <string name="ajouter">+</string>
     <string name="annulation_ajout">Ajout annulé</string>
     <string name="action_settings">Rien</string>
+    <string name="modifier">Modifier</string>
+    <string name="supprimer">Modifier</string>
 </resources>
