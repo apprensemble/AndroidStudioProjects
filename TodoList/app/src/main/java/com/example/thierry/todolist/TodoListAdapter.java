@@ -78,7 +78,7 @@ public class TodoListAdapter<T> extends ArrayAdapter<TodoListObject> {
                         p.setStatus(status.isChecked());
                         verifStatus(status.isChecked());
                         notifyDataSetChanged();
-                        TodoListLoader.ecrire(context,tlo);
+                       // TodoListLoader.ecrire(context,tlo);
                     }
                 });
             }

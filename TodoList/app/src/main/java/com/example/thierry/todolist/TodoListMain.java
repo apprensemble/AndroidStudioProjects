@@ -77,6 +77,12 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        TodoListLoader.ecrire(getApplicationContext(), todoListeArray);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Intent.FILL_IN_DATA) {
@@ -93,7 +99,6 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
                 }
                 todoListeAdapater.add(tlo2);
                 Toast.makeText(getApplicationContext(),tlo2.getDeadlineText()+" "+tlo2.getAction(),Toast.LENGTH_SHORT).show();
-                TodoListLoader.ecrire(getApplicationContext(), todoListeArray);
             }
             else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(),R.string.annulation_ajout,Toast.LENGTH_SHORT).show();
@@ -104,7 +109,6 @@ public class TodoListMain extends AppCompatActivity implements AdapterView.OnIte
                 if (position != -1) {
                     TodoListObject tlo = todoListeAdapater.getItem(position);
                     todoListeAdapater.remove(tlo);
-                    TodoListLoader.ecrire(getApplicationContext(), todoListeArray);
                 }
 
             }
