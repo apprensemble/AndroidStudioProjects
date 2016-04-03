@@ -201,7 +201,7 @@ public class VueConv {
     }
 
     private Boolean entreeValide(CharSequence s) {
-        return s.toString().matches("[-]?[.0-9][0-9]*");
+        return s.toString().matches("([-]?[.0-9][0-9]*)|([-]?[0-9][.0-9]*)");
     }
 
     public void convertirDepuisKelvin(CharSequence s) {

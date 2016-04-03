@@ -5,20 +5,20 @@
 
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
-        android:id="@+id/ajouter"
-        android:icon="@android:drawable/ic_menu_save"
+        android:id="@+id/supprimer"
+        android:icon="@android:drawable/ic_menu_delete"
         app:showAsAction="always"
-        android:title="@string/ajouter" />
+        android:title="@string/supprimer" />
     <item
         android:id="@+id/annuler"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         app:showAsAction="always"
         android:title="@string/annulation_ajout" />
     <item
-        android:id="@+id/supprimer"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:id="@+id/ajouter"
+        android:icon="@android:drawable/ic_menu_save"
         app:showAsAction="always"
-        android:title="@string/supprimer" />
+        android:title="@string/ajouter" />
 
     <!-- Settings, should always be in the overflow -->
     <!--

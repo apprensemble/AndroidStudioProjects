@@ -37,7 +37,7 @@ public class ControllerConv {
     }
 
     public CharSequence valideEntree(CharSequence entree) {
-        if(entree.toString().matches("[.]")) {
+        if(entree.toString().matches("^[.]")) {
             entree = "0.";
         }
         return entree;
