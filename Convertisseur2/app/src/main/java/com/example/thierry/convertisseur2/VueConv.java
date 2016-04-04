@@ -50,11 +50,11 @@ public class VueConv {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (celcius.hasFocus()&&entreeValide(s)) {
+                if (celcius.isFocused()&&entreeValide(s)) {
                     s = monController.valideEntree(s);
                     convertirDepuisCelcius(s);
                 }
-                else if(start==0 && before==1){
+                else if(celcius.isFocused() && start==0 && before==1 && count==0){
                     resetEcran();
                 }
 //                Log.i("start - before - count",s+" "+start+" "+before+" "+count);
@@ -73,11 +73,11 @@ public class VueConv {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (kelvin.hasFocus()&&entreeValide(s)) {
+                if (kelvin.isFocused()&&entreeValide(s)) {
                     s = monController.valideEntree(s);
                     convertirDepuisKelvin(s);
                 }
-                else if(start==0 && before==1){
+                else if(kelvin.isFocused() && start==0 && before==1 && count==0){
                     resetEcran();
                 }
             }
@@ -106,7 +106,7 @@ public class VueConv {
                     s = monController.valideEntree(s);
                     convertirDepuisFarenheit(s);
                 }
-                else if(start==0 && before==1){
+                else if(farenheit.isFocused() && start==0 && before==1 && count==0){
                     resetEcran();
                 }
             }
