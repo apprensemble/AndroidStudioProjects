@@ -43,4 +43,8 @@ public class ControllerConv {
         return entree;
     }
 
+    public Boolean entreeValide(CharSequence s) {
+        return s.toString().matches("([-]?[.0-9][0-9]*)|([-]?[0-9][.0-9]*)");
+    }
+
 }

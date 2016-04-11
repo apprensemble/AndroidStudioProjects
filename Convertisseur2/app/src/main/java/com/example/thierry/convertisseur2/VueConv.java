@@ -50,7 +50,7 @@ public class VueConv {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (celcius.isFocused()&&entreeValide(s)) {
+                if (celcius.isFocused()&&monController.entreeValide(s)) {
                     s = monController.valideEntree(s);
                     convertirDepuisCelcius(s);
                 }
@@ -73,7 +73,7 @@ public class VueConv {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (kelvin.isFocused()&&entreeValide(s)) {
+                if (kelvin.isFocused()&&monController.entreeValide(s)) {
                     s = monController.valideEntree(s);
                     convertirDepuisKelvin(s);
                 }
@@ -87,7 +87,7 @@ public class VueConv {
                 try {
                     CharSequence seq = kelvin.getText();
                     seq = monController.valideEntree(seq);
-                    if (entreeValide(seq)) kelvinValide(Double.valueOf(s.toString()) >= 0);
+                    if (monController.entreeValide(seq)) kelvinValide(Double.valueOf(seq.toString()) >= 0);
                 }
                 catch (NullPointerException e) {
 
@@ -102,7 +102,7 @@ public class VueConv {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (farenheit.hasFocus()&&entreeValide(s)) {
+                if (farenheit.hasFocus()&&monController.entreeValide(s)) {
                     s = monController.valideEntree(s);
                     convertirDepuisFarenheit(s);
                 }
@@ -200,9 +200,6 @@ public class VueConv {
         affiche(kelvin, vKelvin);
     }
 
-    private Boolean entreeValide(CharSequence s) {
-        return s.toString().matches("([-]?[.0-9][0-9]*)|([-]?[0-9][.0-9]*)");
-    }
 
     public void convertirDepuisKelvin(CharSequence s) {
         monController.convertirDepuisKelvin(s);
