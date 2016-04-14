@@ -1,5 +1,6 @@
 package com.example.thierry.gallerie2;
 
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -8,13 +9,16 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.LruCache;
 import android.view.MotionEvent;
+import android.widget.ImageView;
 
 public class MainActivity extends FragmentActivity {
 
     private final static int NBR_PAGES = 4;
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
+    private LruCache<String,Bitmap> memCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
