@@ -17,4 +17,5 @@
     <string name="action_settings">Rien</string>
     <string name="modifier">Modifier</string>
     <string name="supprimer">Modifier</string>
+    <string name="reset">RAZ action</string>
 </resources>

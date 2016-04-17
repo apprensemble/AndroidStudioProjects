@@ -2,6 +2,8 @@ package com.example.thierry.todolist;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.StringRes;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,20 +84,20 @@ public class TodoListAdapter<T> extends ArrayAdapter<TodoListObject> {
                     }
                 });
             }
-
         }
-
         return v;
     }
 
-    private int verifStatus(Boolean checked) {
+
+    private String verifStatus(Boolean checked) {
+        //rustine : je ne sais pas inverser la case a cocher
+        String fait = getContext().getString(R.string.fait);
+        String a_faire = getContext().getString(R.string.a_faire);
         if (checked) {
-            return R.string.fait;
+            return Espaceur.diffText(fait, a_faire)+fait;
         }
         else {
-            return R.string.a_faire;
+            return Espaceur.diffText(a_faire,fait)+a_faire;
         }
-
     }
-
 }

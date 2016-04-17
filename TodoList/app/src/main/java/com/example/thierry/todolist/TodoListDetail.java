@@ -49,7 +49,7 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         deadlineView = (EditText) findViewById(R.id.deadline );
         Button calendrierView = (Button) findViewById(R.id.calendrier);
         ok = (Button) findViewById(R.id.valide);
-        Button annule = (Button) findViewById(R.id.annule);
+        Button reset = (Button) findViewById(R.id.reset);
         Date d = new Date();
         d.setTime(b.getLong("deadline", d.getTime()));
         deadlineView.setText(ConvertisseurDate.strSlashFromDate(d));
@@ -77,9 +77,8 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
         prioritén.setOnClickListener(this);
         prioritéh.setOnClickListener(this);
         statusView.setOnClickListener(this);
-        annule.setOnClickListener(this);
+        reset.setOnClickListener(this);
         verifStatus();
-        //annule.setId(R.id.supprime);
     }
 
     @Override
@@ -137,11 +136,14 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
     }
 
     private void verifStatus() {
+        //rustine
+        String fait = getString(R.string.fait);
+        String a_faire = getString(R.string.a_faire);
         if (statusView.isChecked()) {
-            statusView.setText(R.string.fait);
+            statusView.setText(Espaceur.diffText(fait,a_faire)+fait);
         }
         else {
-            statusView.setText(R.string.a_faire);
+            statusView.setText(Espaceur.diffText(a_faire,fait)+a_faire);
         }
     }
 
@@ -170,10 +172,15 @@ public class TodoListDetail extends AppCompatActivity  implements DialogInterfac
             case R.id.status :
                 verifStatus();
                 break;
-            case R.id.annule :
-                annulation();
+            case R.id.reset :
+                raz();
                 break;
         }
+    }
+
+    private void raz() {
+        //rustine : j'ai passé tt mon temps sur la gallerie donc pas de temps pour ce type de détail
+        actionView.setText("");
     }
 
 
