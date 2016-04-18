@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
+import static com.example.thierry.gallerie2.PrepareImageGallery.ajoutBitmapDansMemCache;
+
 /**
  * Created by thierry on 15/04/16.
  */
@@ -31,7 +33,7 @@ public class ChargeImageThread extends AsyncTask<Integer, Void, Bitmap> {
         data = params[0];
         final Bitmap bitmap = PrepareImageGallery.GetVignette(res, data, 640, 480 );
         //gestion cache
-        //ajoutBitmapDansMemCache(String.valueOf(data),bitmap);
+        ajoutBitmapDansMemCache(String.valueOf(data),bitmap);
         return bitmap;
     }
 

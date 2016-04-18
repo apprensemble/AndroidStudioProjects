@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 /**
  * Created by thierry on 16/04/16.
  */
-public class ViewPagerDeCompet extends ViewPager{
+public class ViewPagerDeCompet extends ViewPager {
     private GestureDetectorCompat gestureDetectorCompat;
     public ViewPagerDeCompet(Context context) {
         super(context);
@@ -22,10 +22,12 @@ public class ViewPagerDeCompet extends ViewPager{
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(ev) &&
-                gestureDetectorCompat.onTouchEvent(ev);
+        //return super.onTouchEvent(ev) &&
+        super.onTouchEvent(ev);
+                return gestureDetectorCompat.onTouchEvent(ev);
     }
-    public void setGestureDetectorCompat(GestureDetectorCompat gestureDetectorCompat) {
-        this.gestureDetectorCompat = gestureDetectorCompat;
+
+    public void setGestureDetectorCompat() {
+        gestureDetectorCompat = new GestureDetectorCompat(getContext(),new GallerieGestureListener());
     }
 }

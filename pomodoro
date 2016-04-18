@@ -145,36 +145,39 @@ total 90(+10)
 total 96(+6)
 0411
 +1 lecture
-+1 gallerie
-+1 gallerie
-+1 gallerie
++1 galerie
++1 galerie
++1 galerie
 total 100(+4)
 0412
-+1 gallerie
-+1 gallerie
-+1 gallerie
++1 galerie
++1 galerie
++1 galerie
 total 103(+3)
 0413
-+1 gallerie2
-+1 gallerie2
++1 galerie2
++1 galerie2
 total 105(+2)
 0414
-+1 gallerie2
-+1 gallerie2
-+1 gallerie2
-+1 gallerie2
++1 galerie2
++1 galerie2
++1 galerie2
++1 galerie2
 total 109(+4)
 0415
-+1 gallerie2 (cache bitmap)
-+1 gallerie2 (cache Fragment)
-+1 gallerie2 (retour arriere)
-+1 gallerie2 (reorg du code)
-+1 gallerie2 (recherche)
++1 galerie2 (cache bitmap)
++1 galerie2 (cache Fragment)
++1 galerie2 (retour arriere)
++1 galerie2 (reorg du code)
++1 galerie2 (recherche)
 total 114(+5)
 0416 et 0417
-Je n'ai pas chronometre mais je pense avoir passé 8H sur le week end a travailler sur la gallerie
+Je n'ai pas chronometre mais je pense avoir passé 8H sur le week end a travailler sur la galerie
 En resumé je n'ai pas reussi a capturer le onLongPress avec un ViewPager même en creant une classe derivée qui renvoit tt les evenements.
 Je me suis acharné mais rien à faire. Je connais des tas de méthodes de contournement mais je voulais une action du onLongPress et pas faire un calcul moi meme ou une truc du genre mais c'est raté.
-finalement j'ai fais une gallerie en 2H from scratch ou presque.
+finalement j'ai fais une galerie en 2H from scratch ou presque.
 total 134(+16)
+0418
++1 galerie2 (autonomie du GestureDetector dans ViewPager)
+total 135(+1)
 

@@ -28,47 +28,19 @@ import java.util.ArrayList;
  * Created by thierry on 12/04/16.
  */
 
-public class PageFragment extends Fragment implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener{
+public class PageFragment extends Fragment{
 
-    private GestureDetectorCompat gestureDetector;
-    private BitmapFactory.Options options;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /*
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.activity_main, container, false);
-        ImageView iv = (ImageView) rootView.findViewById(R.id.imageView);
-        */
         ImageView rootView = (ImageView) inflater.inflate(R.layout.activity_main, container, false);
         ImageView iv = (ImageView) rootView.findViewById(R.id.imageView);
-        /*
-        //initialiser gesture detector
-        //gestureDetector = new GestureDetectorCompat(getContext(),this);
-        //gestureDetector.setOnDoubleTapListener(this);
-        iv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return getActivity().onTouchEvent(event);
-                //return gestureDetector.onTouchEvent(event);
-            }
-        });
-        */
 
         Bundle b = getArguments();
-        //iv.setImageDrawable(getImage(b.getInt("position",R.drawable.home)));
         int resId = getImage(b.getInt("position"));
-        //iv.setImageBitmap(PrepareImageGallery.GetVignette(getResources(), resId, 100, 100));
 
         chargeImage(resId, iv);
-        options = PrepareImageGallery.getTailleImage(getResources(),resId);
 
         return rootView;
-    }
-
-
-
-
-    private void infoImage() {
-        Toast.makeText(getContext(),options.outMimeType + " " + String.valueOf(options.outHeight) + " x " + String.valueOf(options.outWidth) + "\n density : " + String.valueOf(options.inDensity) ,Toast.LENGTH_SHORT).show();
     }
 
     private int getImage(int position) {
@@ -113,51 +85,4 @@ public class PageFragment extends Fragment implements GestureDetector.OnGestureL
     }
 
 
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return true;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-        infoImage();
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-        Toast.makeText(getContext(),"long press",Toast.LENGTH_SHORT);
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        return false;
-    }
-
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTap(MotionEvent e) {
-        return true;
-    }
-
-    @Override
-    public boolean onDoubleTapEvent(MotionEvent e) {
-//        if (gestureDetector)
-        Toast.makeText(getContext(),"double tap" , Toast.LENGTH_SHORT);
-        return true;
-    }
 }

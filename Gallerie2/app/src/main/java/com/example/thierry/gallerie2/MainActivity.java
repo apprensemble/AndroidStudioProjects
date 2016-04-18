@@ -14,8 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener{
-    private GestureDetectorCompat gestureDetector;
+public class MainActivity extends FragmentActivity{
 
     private final static int NBR_PAGES = 5;
     private ViewPagerDeCompet pager;
@@ -26,7 +25,6 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.principal);
 
-        gestureDetector = new GestureDetectorCompat(this,this);
 
         //gestion du cache
         PrepareImageGallery.initCache();
@@ -34,8 +32,8 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
        //instanciation des viewpager et pagerAdapter
         pager = (ViewPagerDeCompet) findViewById(R.id.pager);
         pagerAdapter = new GalleriePagerAdapter(getSupportFragmentManager());
+        pager.setGestureDetectorCompat();
         pager.setAdapter(pagerAdapter);
-        pager.setGestureDetectorCompat(gestureDetector);
         //pager.setOffscreenPageLimit(4);
 
     }
@@ -50,62 +48,6 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return gestureDetector.onTouchEvent(event);
-        //return super.onTouchEvent(event);
-    }
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return true;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-        Log.i("main","onShowPress");
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-        Log.i("main","onLongPress yeah man!");
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        Log.i("main","onFling");
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTap(MotionEvent e) {
-        Log.i("main", "double tap");
-        return true;
-    }
-
-
-    @Override
-    public boolean onDoubleTapEvent(MotionEvent e) {
-        Log.i("main", "double tap");
-        return true;
-    }
 
 
     private class GalleriePagerAdapter extends FragmentStatePagerAdapter {
